@@ -1,4 +1,5 @@
-﻿using Northwind.Business.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using Northwind.Business.Abstract;
 using Northwind.DataAccess.Abstract;
 using Northwind.DataAccess.Concrete.EntityFramework;
 using Northwind.Entities.Concrete;
@@ -42,6 +43,19 @@ namespace Northwind.Business.Concrete
         public void Update(Product product)
         {
             _productDal.Update(product);
+        }
+
+        public void Delete(Product product)
+        {
+            try
+            {
+                _productDal.Delete(product);
+            }
+            catch 
+            {
+                throw new Exception("Remove failed.");
+            }
+            
         }
     }
 }
